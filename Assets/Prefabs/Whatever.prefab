@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222248209755540496}
   - component: {fileID: 114157471068101370}
   - component: {fileID: 114365189338544732}
+  - component: {fileID: 111191062864433202}
   m_Layer: 5
   m_Name: Whatever
   m_TagString: Untagged
@@ -29,6 +30,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!111 &111191062864433202
+Animation:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347112226660494}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c5a2a2ab08025614980e4a3bba81d5a3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c5a2a2ab08025614980e4a3bba81d5a3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114157471068101370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2809a4d27cf8f7d4984aeeed65622854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SayWhen: 5
+  SayWhen: 6
   timer: 0
 --- !u!222 &222248209755540496
 CanvasRenderer:
