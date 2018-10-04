@@ -7,20 +7,20 @@ public class move : MonoBehaviour {
     Vector2 spawnPosition;
     GameObject floatingText;
 
-    RectTransform rectTransform = GetComponent<RectTransform>().anchoredPosition;
+    RectTransform m_RectTransform;
 
     // Use this for initialization
     void Start () {
 
-        
+        m_RectTransform = GetComponent<RectTransform>();
 
 
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        spawnPosition = new Vector2(this.GetComponent<RectTransform>().anchoredPosition.x-1,
-                                    this.GetComponent<RectTransform>().anchoredPosition.y);
-        floatingText.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
+
+        m_RectTransform.anchoredPosition = new Vector2(m_RectTransform.anchoredPosition.x-.5f, m_RectTransform.anchoredPosition.y);
+
     }
 }
