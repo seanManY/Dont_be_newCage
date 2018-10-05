@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -11,10 +12,12 @@ public class GameManager : MonoBehaviour {
     bool move = false;
     private int randomWord;
     private int randLocation;
+    int score = 0;
 
     public GameObject canvas;
     Vector2 spawnPosition;
     GameObject floatingText;
+    public GameObject Score;
 
 
     public GameObject SpaceText;
@@ -50,16 +53,19 @@ public class GameManager : MonoBehaviour {
     public GameObject Sure2;
     public GameObject Sure3;
 
+    public GameObject FloatScore;
+    public GameObject floatScoreSpawn;
+
     // Use this for initialization
     void Start () {
 
         fireTimer = 0;
-
+        
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         timer += Time.deltaTime;
         float seconds = timer % 60;
@@ -83,9 +89,11 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (move)
         {
             fireTimer++;
+            UpdateScore();
 
             if ((fireTimer >= fireRate) && (fireRate != 100))
             {
@@ -269,5 +277,29 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+    }
+
+    public void UpdateScore()
+    {
+        int newScore; //newDOug
+        int negCounter = 0;
+        int CoinFlip = Random.Range(0, 200);
+        TextMeshProUGUI ScoreText = Score.GetComponent<TextMeshProUGUI>();
+
+        if(CoinFlip == 1)
+        {
+            newScore = Random.Range(1, 26);
+            score += newScore;
+            ScoreText.SetText("Score: " + score);
+            FloatScore.GetComponent<TextMeshProUGUI>().SetText("+" + score);
+            floatingText = Instantiate(FloatScore) as GameObject;
+            floatingText.transform.SetParent(canvas.transform);
+            spawnPosition = new Vector2(floatingText.GetComponent<RectTransform>().anchoredPosition.x,
+                                        floatingText.GetComponent<RectTransform>().anchoredPosition.y);
+
+        }
+
+        
+        
     }
 }
