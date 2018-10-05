@@ -295,7 +295,8 @@ public class GameManager : MonoBehaviour {
             floatingText = Instantiate(FloatScore) as GameObject;
             floatingText.transform.SetParent(canvas.transform);
             spawnPosition = new Vector2(floatingText.GetComponent<RectTransform>().anchoredPosition.x,
-                                        floatingText.GetComponent<RectTransform>().anchoredPosition.y);
+                                        floatingText
+                                        .GetComponent<RectTransform>().anchoredPosition.y);
 
         }
 
