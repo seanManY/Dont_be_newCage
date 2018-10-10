@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour {
     Vector2 spawnPosition;
     GameObject floatingText;
     public GameObject Score;
+    int posRange = 200;
+    int negRange = 0;
+    bool negScore = false;
 
 
     public GameObject SpaceText;
@@ -53,8 +56,12 @@ public class GameManager : MonoBehaviour {
     public GameObject Sure2;
     public GameObject Sure3;
 
-    public GameObject FloatScore;
-    public GameObject floatScoreSpawn;
+    public GameObject posScoreText;
+    public GameObject posSpawn;
+    public GameObject negScoreText;
+    public GameObject negSpawn;
+
+    public GameObject Nick;
 
     // Use this for initialization
     void Start () {
@@ -93,7 +100,6 @@ public class GameManager : MonoBehaviour {
         if (move)
         {
             fireTimer++;
-            UpdateScore();
 
             if ((fireTimer >= fireRate) && (fireRate != 100))
             {
@@ -103,10 +109,14 @@ public class GameManager : MonoBehaviour {
                 randomWord = Random.Range(0, 6); 
                 randLocation = Random.Range(0, 3);
 
-                Debug.Log(randomWord);
+                
+                UpdateScore();
 
                 switch (randomWord)
                 {
+
+
+                     
                     //Fine
                     case 0:
                         floatingText = Instantiate(FineText) as GameObject;
@@ -283,21 +293,47 @@ public class GameManager : MonoBehaviour {
     {
         int newScore; //newDOug
         int negCounter = 0;
-        int CoinFlip = Random.Range(0, 200);
+        int CoinFlip = Random.Range(0, 201);
         TextMeshProUGUI ScoreText = Score.GetComponent<TextMeshProUGUI>();
+        Debug.Log("Coin: " + CoinFlip);
+        Debug.Log("range: " + posRange);
 
-        if(CoinFlip == 1)
+        if(CoinFlip <= posRange)
         {
             newScore = Random.Range(1, 26);
             score += newScore;
             ScoreText.SetText("Score: " + score);
-            FloatScore.GetComponent<TextMeshProUGUI>().SetText("+" + score);
-            floatingText = Instantiate(FloatScore) as GameObject;
-            floatingText.transform.SetParent(canvas.transform);
-            spawnPosition = new Vector2(floatingText.GetComponent<RectTransform>().anchoredPosition.x,
-                                        floatingText
-                                        .GetComponent<RectTransform>().anchoredPosition.y);
 
+            floatingText = Instantiate(posScoreText) as GameObject;
+            floatingText.GetComponent<TextMeshProUGUI>().SetText("+" + newScore);
+            floatingText.transform.SetParent(Nick.transform);
+            spawnPosition = new Vector2(posSpawn.GetComponent<RectTransform>().anchoredPosition.x,
+                                        posSpawn.GetComponent<RectTransform>().anchoredPosition.y);
+            floatingText.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
+
+            if (score >= 50)
+            {
+                negScore = true;
+            }
+
+            if(negScore)
+            {
+                posRange -= 10;
+            }
+            //FloatScore.GetComponent<TextMeshProUGUI>().SetText("+" + score);
+            //floatingText = Instantiate(FloatScore) as GameObject;
+            //floatingText.transform.SetParent(canvas.transform);
+            //spawnPosition = new Vector2(floatingText.GetComponent<RectTransform>().anchoredPosition.x,
+            //                            floatingText
+            //                            .GetComponent<RectTransform>().anchoredPosition.y);
+
+        }
+        else if(negScore)
+        {
+            newScore = Random.Range(1, 26);
+            score -= newScore;
+            ScoreText.SetText("Score: " + score);
+            posRange -= 10;
         }
 
         
