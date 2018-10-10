@@ -9,6 +9,9 @@ public class move : MonoBehaviour {
 
     RectTransform m_RectTransform;
 
+    public bool positive = false;
+    public bool negative = false;
+
     // Use this for initialization
     void Start () {
 
@@ -20,7 +23,22 @@ public class move : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        m_RectTransform.anchoredPosition = new Vector2(m_RectTransform.anchoredPosition.x-.5f, m_RectTransform.anchoredPosition.y);
+        if(positive)
+        {
+            m_RectTransform.anchoredPosition = new Vector2(m_RectTransform.anchoredPosition.x, m_RectTransform.anchoredPosition.y + .5f);
+
+        }
+        else if (negative)
+        {
+            m_RectTransform.anchoredPosition = new Vector2(m_RectTransform.anchoredPosition.x, m_RectTransform.anchoredPosition.y - .5f);
+
+        }
+        else
+        {
+            m_RectTransform.anchoredPosition = new Vector2(m_RectTransform.anchoredPosition.x - .5f, m_RectTransform.anchoredPosition.y);
+
+        }
+
 
     }
 }

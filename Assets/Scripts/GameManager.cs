@@ -91,6 +91,13 @@ public class GameManager : MonoBehaviour {
             move = true;
 
         }
+
+        if(Input.GetKeyUp("space"))
+        {
+            StartCoroutine(EndGame());
+        }
+
+        
 	}
 
     // Update is called once per frame
@@ -320,12 +327,6 @@ public class GameManager : MonoBehaviour {
             {
                 posRange -= 10;
             }
-            //FloatScore.GetComponent<TextMeshProUGUI>().SetText("+" + score);
-            //floatingText = Instantiate(FloatScore) as GameObject;
-            //floatingText.transform.SetParent(canvas.transform);
-            //spawnPosition = new Vector2(floatingText.GetComponent<RectTransform>().anchoredPosition.x,
-            //                            floatingText
-            //                            .GetComponent<RectTransform>().anchoredPosition.y);
 
         }
         else if(negScore)
@@ -333,10 +334,26 @@ public class GameManager : MonoBehaviour {
             newScore = Random.Range(1, 26);
             score -= newScore;
             ScoreText.SetText("Score: " + score);
+
+            floatingText = Instantiate(negScoreText) as GameObject;
+            floatingText.GetComponent<TextMeshProUGUI>().SetText("-" + newScore);
+            floatingText.transform.SetParent(Nick.transform);
+            spawnPosition = new Vector2(negSpawn.GetComponent<RectTransform>().anchoredPosition.x,
+                                        negSpawn.GetComponent<RectTransform>().anchoredPosition.y);
+            floatingText.GetComponent<RectTransform>().anchoredPosition = spawnPosition;
+
             posRange -= 10;
         }
 
         
         
+    }
+
+    IEnumerator EndGame()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(5);
+        Debug.Log("Something");
+
     }
 }
