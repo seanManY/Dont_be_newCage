@@ -16,6 +16,9 @@ public class ScrollingBackground : MonoBehaviour
     private Vector3 PositionCam;
     private Camera cam;
 
+    private bool down = false;
+    private bool again = false;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -26,7 +29,18 @@ public class ScrollingBackground : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !again)
+        {
+            again = true;
+            down = true;
+        }
+
+        if (Input.GetKeyUp("space"))
+        {
+            down = false;
+        }
+
+        if (down)
         {
 
             foreach (var item in sprites)
@@ -99,6 +113,7 @@ public class ScrollingBackground : MonoBehaviour
                     item.transform.Translate(new Vector2(0, Time.deltaTime * Speed));
             }
         }
+        
 
     }
 }

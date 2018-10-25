@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -94,7 +95,9 @@ public class GameManager : MonoBehaviour {
 
         if(Input.GetKeyUp("space"))
         {
+            move = false;
             StartCoroutine(EndGame());
+            
         }
 
         
@@ -351,9 +354,11 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator EndGame()
     {
-        Time.timeScale = 0;
-        yield return new WaitForSeconds(5);
-        Debug.Log("Something");
+        
+
+        float fadeTime = GameObject.Find("GameManager").GetComponent<Faded>().BeginFade(1);
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
     }
 }
