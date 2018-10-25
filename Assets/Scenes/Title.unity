@@ -1922,7 +1922,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1353362560}
-  - component: {fileID: 1353362559}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1930,19 +1929,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1353362559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1353362558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7971afbda945d4c92f7d19cc84f7ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: 312dc4a7a71551545b7c27f801fc7224, type: 3}
-  fadeSpeed: 0.1
 --- !u!4 &1353362560
 Transform:
   m_ObjectHideFlags: 0

@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour {
 
         float fadeTime = GameObject.Find("GameManager").GetComponent<Faded>().BeginFade(1);
         yield return new WaitForSeconds(10);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
 }
